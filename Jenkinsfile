@@ -132,12 +132,15 @@ pipeline {
         stage('Update Kubernetes Manifests') {
             steps {
                 script {
-                    update_k8s_manifests(
+                    uupdate_k8s_manifests(
                         imageTag: env.DOCKER_IMAGE_TAG,
                         manifestsPath: 'kubernetes',
                         gitCredentials: 'github-credentials',
                         gitUserName: 'Jenkins CI',
-                        gitUserEmail: 'jenkins@ci.local'
+                        gitUserEmail: 'jenkins@ci.local',
+                        appImage: env.DOCKER_IMAGE_NAME,
+                        migrationImage: env.DOCKER_MIGRATION_IMAGE_NAME,
+                        repoUrl: "https://github.com/sagar9836/Qualibytes-Ecommerce.git"
                     )
                 }
             }
